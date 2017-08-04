@@ -46,11 +46,11 @@ VOLUME /var/www/html
 ENV DOKUWIKI_VERSION 2017-02-19b
 
 RUN set -ex; \
-	curl -o dokuwiki.tgz -fSL "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz"; \
-# upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
-	tar -xzf dokuwiki.tgz -C /usr/src/; \
+	curl -o dokuwiki.tgz -fSL "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-$DOKUWIKI_VERSION.tgz"; \
+	mkdir /usr/src/dokuwiki; \
+	tar -xzf dokuwiki.tgz --strip 1 -C /usr/src/dokuwiki; \
 	rm dokuwiki.tgz; \
-	chown -R www-data:www-data "/usr/src/dokuwiki-${DOKUWIKI_VERSION}"
+	chown -R www-data:www-data "/usr/src/dokuwiki"
 
 COPY docker-entrypoint.sh /usr/local/bin/
 
