@@ -1,0 +1,32 @@
+dokuwiki:
+  image: daocloud.io/dphdjy/dokuwiki
+  container_name: dokuwiki
+  volumes:
+    - ./dokuwiki/conf:/var/www/html/conf
+    - ./dokuwiki/data/pages:/var/www/html/data/pages
+    - ./dokuwiki/data/meta:/var/www/html/data/meta
+    - ./dokuwiki/data/attic:/var/www/html/data/attic
+    - ./dokuwiki/data/media:/var/www/html/data/media
+    - ./dokuwiki/data/media_meta:/var/www/html/data/media_meta
+    - ./dokuwiki/data/media_attic:/var/www/html/data/media_attic
+
+
+  ports:
+    - 9000
+nginx:
+  image: nginx
+  container_name: nginx
+  links:
+    - dokuwiki
+  volumes_from:
+    - dokuwiki
+  volumes:
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    - ./nginx/conf.d:/etc/nginx/conf.d
+    - ./nginx/sites-available:/etc/nginx/sites-available
+    - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+    - ./ssl:/etc/nginx/ssl
+  ports:
+    - 80:80
+    - 443:443
+
