@@ -43,7 +43,7 @@ RUN { \
 
 VOLUME /var/www/html
 
-ENV DOKUWIKI_VERSION 2017-02-19b
+ENV DOKUWIKI_VERSION 2017-02-19c
 
 RUN set -ex; \
 	curl -o dokuwiki.tgz -fSL "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-$DOKUWIKI_VERSION.tgz"; \
