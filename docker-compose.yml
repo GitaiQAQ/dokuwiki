@@ -9,6 +9,7 @@ dokuwiki:
     - ./dokuwiki/data/media:/var/www/html/data/media
     - ./dokuwiki/data/media_meta:/var/www/html/data/media_meta
     - ./dokuwiki/data/media_attic:/var/www/html/data/media_attic
+    - ./dokuwiki/lib:/var/www/html/lib
 
 
   ports:
@@ -29,4 +30,3 @@ nginx:
   ports:
     - 80:80
     - 443:443
-
